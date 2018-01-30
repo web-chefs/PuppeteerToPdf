@@ -1,4 +1,4 @@
-# Convert a webpage to an image or pdf using headless Chrome
+# Convert a webpage to pdf using headless Chrome
 
 [![Latest Version](https://img.shields.io/github/release/web-chefs/PuppeteerToPdf.svg?style=flat-square)](https://github.com/web-chefs/PuppeteerToPdf/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
