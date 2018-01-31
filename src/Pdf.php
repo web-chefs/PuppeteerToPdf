@@ -146,17 +146,17 @@ class Pdf
         return $this->footerHtml('<p></p>');
     }
 
-    public function headerHtml(string $html)
+    public function headerHtml($html)
     {
         return $this->setOption('headerTemplate', $html);
     }
 
-    public function footerHtml(string $html)
+    public function footerHtml($html)
     {
         return $this->setOption('footerTemplate', $html);
     }
 
-    public function deviceScaleFactor(int $deviceScaleFactor)
+    public function deviceScaleFactor($deviceScaleFactor)
     {
         // Google Chrome currently supports values of 1, 2, and 3.
         return $this->setOption('viewport.deviceScaleFactor', max(1, min(3, $deviceScaleFactor)));
@@ -188,22 +188,22 @@ class Pdf
         return $this->setOption('ignoreHttpsErrors', true);
     }
 
-    public function mobile(bool $mobile = true)
+    public function mobile($mobile = true)
     {
         return $this->setOption('viewport.isMobile', true);
     }
 
-    public function touch(bool $touch = true)
+    public function touch($touch = true)
     {
         return $this->setOption('viewport.hasTouch', true);
     }
 
-    public function landscape(bool $landscape = true)
+    public function landscape($landscape = true)
     {
         return $this->setOption('landscape', $landscape);
     }
 
-    public function margins(int $top, int $right, int $bottom, int $left)
+    public function margins($top, $right, $bottom, $left)
     {
         return $this->setOption('margin', [
             'top' => $top.'mm',
