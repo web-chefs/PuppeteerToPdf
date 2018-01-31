@@ -324,26 +324,26 @@ class PdfTest extends TestCase
     // }
 
     /** @test */
-    public function it_can_run_without_sandbox()
-    {
-        $command = Pdf::url('https://example.com')
-            ->noSandbox()
-            ->createPdfCommand('document.pdf');
+    // public function it_can_run_without_sandbox()
+    // {
+    //     $command = Pdf::url('https://example.com')
+    //         ->noSandbox()
+    //         ->createPdfCommand('document.pdf');
 
-        $this->assertEquals([
-            'url' => 'https://example.com',
-            'action' => 'pdf',
-            'options' => [
-                'viewport' => [
-                    'width' => 800,
-                    'height' => 600,
-                ],
-                'args' => [
-                    '--no-sandbox',
-                ],
-            ],
-        ], $command);
-    }
+    //     $this->assertEquals([
+    //         'url' => 'https://example.com',
+    //         'action' => 'pdf',
+    //         'options' => [
+    //             'viewport' => [
+    //                 'width' => 800,
+    //                 'height' => 600,
+    //             ],
+    //             'args' => [
+    //                 '--no-sandbox',
+    //             ],
+    //         ],
+    //     ], $command);
+    // }
 
     /** @test */
     public function it_can_dismiss_dialogs()
