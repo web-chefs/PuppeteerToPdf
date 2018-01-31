@@ -28,7 +28,7 @@ class Pdf
      *
      * @return static
      */
-    public static function url(string $url)
+    public static function url($url)
     {
         return (new static)->setUrl($url);
     }
@@ -38,46 +38,46 @@ class Pdf
      *
      * @return static
      */
-    public static function html(string $html)
+    public static function html($html)
     {
         return (new static)->setHtml($html);
     }
 
-    public function __construct(string $url = '')
+    public function __construct($url = '')
     {
         $this->url = $url;
         $this->windowSize(800, 600);
     }
 
-    public function setNodeBinary(string $nodeBinary)
+    public function setNodeBinary($nodeBinary)
     {
         $this->nodeBinary = $nodeBinary;
 
         return $this;
     }
 
-    public function setNpmBinary(string $npmBinary)
+    public function setNpmBinary($npmBinary)
     {
         $this->npmBinary = $npmBinary;
 
         return $this;
     }
 
-    public function setIncludePath(string $includePath)
+    public function setIncludePath($includePath)
     {
         $this->includePath = $includePath;
 
         return $this;
     }
 
-    public function setNodeModulePath(string $nodeModulePath)
+    public function setNodeModulePath($nodeModulePath)
     {
         $this->nodeModulePath = $nodeModulePath;
 
         return $this;
     }
 
-    public function setChromePath(string $executablePath)
+    public function setChromePath($executablePath)
     {
         $this->setOption('executablePath', $executablePath);
 
@@ -87,21 +87,21 @@ class Pdf
     /**
      * @deprecated This option is no longer supported by modern versions of Puppeteer.
      */
-    public function setNetworkIdleTimeout(int $networkIdleTimeout)
+    public function setNetworkIdleTimeout($networkIdleTimeout)
     {
         $this->setOption('networkIdleTimeout');
 
         return $this;
     }
 
-    public function waitUntilNetworkIdle(bool $strict = true)
+    public function waitUntilNetworkIdle($strict = true)
     {
         $this->setOption('waitUntil', $strict ? 'networkidle0' : 'networkidle2');
 
         return $this;
     }
 
-    public function setUrl(string $url)
+    public function setUrl($url)
     {
         $this->url = $url;
         $this->html = '';
@@ -109,14 +109,14 @@ class Pdf
         return $this;
     }
 
-    public function setProxyServer(string $proxyServer)
+    public function setProxyServer($proxyServer)
     {
         $this->proxyServer = $proxyServer;
 
         return $this;
     }
 
-    public function setHtml(string $html)
+    public function setHtml($html)
     {
         $this->html = $html;
         $this->url = '';
@@ -225,12 +225,12 @@ class Pdf
         return $this->setOption('dismissDialogs', true);
     }
 
-    public function pages(string $pages)
+    public function pages($pages)
     {
         return $this->setOption('pageRanges', $pages);
     }
 
-    public function paperSize(float $width, float $height)
+    public function paperSize($width, $height)
     {
         return $this
             ->setOption('width', $width.'mm')
@@ -238,40 +238,40 @@ class Pdf
     }
 
     // paper format
-    public function format(string $format)
+    public function format($format)
     {
         return $this->setOption('format', $format);
     }
 
-    public function timeout(int $timeout)
+    public function timeout($timeout)
     {
         $this->timeout = $timeout;
 
         return $this;
     }
 
-    public function userAgent(string $userAgent)
+    public function userAgent($userAgent)
     {
         $this->setOption('userAgent', $userAgent);
 
         return $this;
     }
 
-    public function emulateMedia(string $media)
+    public function emulateMedia($media)
     {
         $this->setOption('emulateMedia', $media);
 
         return $this;
     }
 
-    public function windowSize(int $width, int $height)
+    public function windowSize($width, $height)
     {
         return $this
             ->setOption('viewport.width', $width)
             ->setOption('viewport.height', $height);
     }
 
-    public function setDelay(int $delayInMilliseconds)
+    public function setDelay($delayInMilliseconds)
     {
         return $this->setOption('delay', $delayInMilliseconds);
     }
@@ -283,19 +283,19 @@ class Pdf
         return $this;
     }
 
-    public function save(string $targetPath)
+    public function save($targetPath)
     {
         return $this->savePdf($targetPath);
     }
 
-    public function bodyHtml(): string
+    public function bodyHtml()
     {
         $command = $this->createBodyHtmlCommand();
 
         return $this->callBrowser($command);
     }
 
-    public function pdf(): string
+    public function pdf()
     {
         $command = $this->createPdfCommand();
 
@@ -304,7 +304,7 @@ class Pdf
         return base64_decode($encoded_pdf);
     }
 
-    public function savePdf(string $targetPath)
+    public function savePdf($targetPath)
     {
         $command = $this->createPdfCommand($targetPath);
 
@@ -317,14 +317,14 @@ class Pdf
         }
     }
 
-    public function createBodyHtmlCommand(): array
+    public function createBodyHtmlCommand()
     {
         $url = $this->html ? $this->createTemporaryHtmlFile() : $this->url;
 
         return $this->createCommand($url, 'content');
     }
 
-    public function createPdfCommand($targetPath = null): array
+    public function createPdfCommand($targetPath = null)
     {
         $url = $this->html ? $this->createTemporaryHtmlFile() : $this->url;
 
@@ -342,7 +342,7 @@ class Pdf
         return $command;
     }
 
-    protected function getOptionArgs(): array
+    protected function getOptionArgs()
     {
         $args = [];
 
@@ -357,7 +357,7 @@ class Pdf
         return $args;
     }
 
-    protected function createCommand(string $url, string $action, array $options = []): array
+    protected function createCommand($url, $action, array $options = [])
     {
         $command = compact('url', 'action', 'options');
 
@@ -370,7 +370,7 @@ class Pdf
         return $command;
     }
 
-    protected function createTemporaryHtmlFile(): string
+    protected function createTemporaryHtmlFile()
     {
         $this->temporaryHtmlDirectory = (new TemporaryDirectory())->create();
 
@@ -414,7 +414,7 @@ class Pdf
         return $process->getOutput();
     }
 
-    protected function getNodePathCommand(string $nodeBinary): string
+    protected function getNodePathCommand($nodeBinary)
     {
         if ($this->nodeModulePath) {
             return "NODE_PATH='{$this->nodeModulePath}'";
@@ -426,7 +426,7 @@ class Pdf
         return 'NODE_PATH=`npm root -g`';
     }
 
-    protected function arraySet(array &$array, string $key, $value): array
+    protected function arraySet(array &$array, $key, $value)
     {
         if (is_null($key)) {
             return $array = $value;
