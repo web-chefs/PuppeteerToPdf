@@ -16,7 +16,7 @@ class TemporaryDirectory
     /** @var bool */
     protected $forceCreate = false;
 
-    public function __construct(string $location = '')
+    public function __construct($location = '')
     {
         $this->location = $this->sanitizePath($location);
     }
@@ -60,7 +60,7 @@ class TemporaryDirectory
      *
      *  @return $this
      */
-    public function name(string $name)
+    public function name($name)
     {
         $this->name = $this->sanitizeName($name);
 
@@ -72,14 +72,14 @@ class TemporaryDirectory
      *
      *  @return $this
      */
-    public function location(string $location)
+    public function location($location)
     {
         $this->location = $this->sanitizePath($location);
 
         return $this;
     }
 
-    public function path(string $pathOrFilename = ''): string
+    public function path($pathOrFilename = '')
     {
         if (empty($pathOrFilename)) {
             return $this->getFullPath();
@@ -110,29 +110,29 @@ class TemporaryDirectory
         $this->deleteDirectory($this->getFullPath());
     }
 
-    protected function getFullPath(): string
+    protected function getFullPath()
     {
         return $this->location.($this->name ? DIRECTORY_SEPARATOR.$this->name : '');
     }
 
-    protected function isValidDirectoryName(string $directoryName): bool
+    protected function isValidDirectoryName(string $directoryName)
     {
         return strpbrk($directoryName, '\\/?%*:|"<>') === false;
     }
 
-    protected function getSystemTemporaryDirectory(): string
+    protected function getSystemTemporaryDirectory()
     {
         return rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR);
     }
 
-    protected function sanitizePath(string $path): string
+    protected function sanitizePath($path)
     {
         $path = rtrim($path);
 
         return rtrim($path, DIRECTORY_SEPARATOR);
     }
 
-    protected function sanitizeName(string $name): string
+    protected function sanitizeName($name)
     {
         if (! $this->isValidDirectoryName($name)) {
             throw new Exception("The directory name `$name` contains invalid characters.");
@@ -141,7 +141,7 @@ class TemporaryDirectory
         return trim($name);
     }
 
-    protected function removeFilenameFromPath(string $path): string
+    protected function removeFilenameFromPath($path)
     {
         if (! $this->isFilePath($path)) {
             return $path;
@@ -150,12 +150,12 @@ class TemporaryDirectory
         return substr($path, 0, strrpos($path, DIRECTORY_SEPARATOR));
     }
 
-    protected function isFilePath(string $path): bool
+    protected function isFilePath($path)
     {
         return strpos($path, '.') !== false;
     }
 
-    protected function deleteDirectory(string $path): bool
+    protected function deleteDirectory($path)
     {
         if (! file_exists($path)) {
             return true;
