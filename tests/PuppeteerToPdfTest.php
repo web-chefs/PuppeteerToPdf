@@ -14,44 +14,44 @@ class PdfTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_the_body_html()
-    {
-        $html = Pdf::url('https://example.com')
-            ->bodyHtml();
+    // public function it_can_get_the_body_html()
+    // {
+    //     $html = Pdf::url('https://example.com')
+    //         ->bodyHtml();
 
-        $this->assertContains('<h1>Example Domain</h1>', $html);
-    }
-
-    /** @test */
-    public function it_can_save_a_pdf()
-    {
-        $targetPath = __DIR__.'/temp/testPdf.pdf';
-
-        Pdf::url('https://example.com')
-            ->save($targetPath);
-
-        $this->assertFileExists($targetPath);
-
-        $this->assertEquals('application/pdf', mime_content_type($targetPath));
-    }
+    //     $this->assertContains('<h1>Example Domain</h1>', $html);
+    // }
 
     /** @test */
-    public function it_can_save_a_highly_customized_pdf()
-    {
-        $targetPath = __DIR__.'/temp/customPdf.pdf';
+    // public function it_can_save_a_pdf()
+    // {
+    //     $targetPath = __DIR__.'/temp/testPdf.pdf';
 
-        Pdf::url('https://example.com')
-            ->hideBrowserHeaderAndFooter()
-            ->showBackground()
-            ->landscape()
-            ->margins(5, 25, 5, 25)
-            ->pages('1')
-            ->savePdf($targetPath);
+    //     Pdf::url('https://example.com')
+    //         ->save($targetPath);
 
-        $this->assertFileExists($targetPath);
+    //     $this->assertFileExists($targetPath);
 
-        $this->assertEquals('application/pdf', mime_content_type($targetPath));
-    }
+    //     $this->assertEquals('application/pdf', mime_content_type($targetPath));
+    // }
+
+    /** @test */
+    // public function it_can_save_a_highly_customized_pdf()
+    // {
+    //     $targetPath = __DIR__.'/temp/customPdf.pdf';
+
+    //     Pdf::url('https://example.com')
+    //         ->hideBrowserHeaderAndFooter()
+    //         ->showBackground()
+    //         ->landscape()
+    //         ->margins(5, 25, 5, 25)
+    //         ->pages('1')
+    //         ->savePdf($targetPath);
+
+    //     $this->assertFileExists($targetPath);
+
+    //     $this->assertEquals('application/pdf', mime_content_type($targetPath));
+    // }
 
     /** @test */
     public function it_can_handle_a_permissions_error()
@@ -312,16 +312,16 @@ class PdfTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_the_include_path_and_still_works()
-    {
-        $targetPath = __DIR__.'/temp/testDocument.pdf';
+    // public function it_can_set_the_include_path_and_still_works()
+    // {
+    //     $targetPath = __DIR__.'/temp/testDocument.pdf';
 
-        Pdf::html('Foo')
-            ->setIncludePath('$PATH:/usr/local/bin:/mypath')
-            ->save($targetPath);
+    //     Pdf::html('Foo')
+    //         ->setIncludePath('$PATH:/usr/local/bin:/mypath')
+    //         ->save($targetPath);
 
-        $this->assertFileExists($targetPath);
-    }
+    //     $this->assertFileExists($targetPath);
+    // }
 
     /** @test */
     public function it_can_run_without_sandbox()
@@ -438,16 +438,16 @@ class PdfTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_the_output_of_a_pdf()
-    {
-        $output = Pdf::url('https://example.com')
-            ->pdf();
+    // public function it_can_get_the_output_of_a_pdf()
+    // {
+    //     $output = Pdf::url('https://example.com')
+    //         ->pdf();
 
-        $finfo = finfo_open();
+    //     $finfo = finfo_open();
 
-        $mimeType = finfo_buffer($finfo, $output, FILEINFO_MIME_TYPE);
+    //     $mimeType = finfo_buffer($finfo, $output, FILEINFO_MIME_TYPE);
 
-        $this->assertEquals($mimeType, 'application/pdf');
-    }
+    //     $this->assertEquals($mimeType, 'application/pdf');
+    // }
 
 }
