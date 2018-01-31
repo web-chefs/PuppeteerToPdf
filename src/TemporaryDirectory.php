@@ -97,7 +97,7 @@ class TemporaryDirectory
     }
 
     /** @return $this */
-    public function empty()
+    public function makeEmpty()
     {
         $this->deleteDirectory($this->getFullPath());
         mkdir($this->getFullPath());
