@@ -6,13 +6,13 @@
 
 The package can convert a webpage to a pdf. The conversion is done behind the scenes by [Puppeteer](https://github.com/GoogleChrome/puppeteer) which controls a headless version of Google Chrome.
 
-Originally base on [spatie/browsershot](https://github.com/).
+Originally base on [spatie/browsershot](https://github.com/spatie/browsershot).
 
 ## Why Fork
 
-WebChefs current tries where possible to support PHP 5.6 and [spatie/browsershot](https://github.com/) requires PHP 7.0 and above.
+WebChefs current tries where possible to support PHP 5.6 and [spatie/browsershot](https://github.com/spatie/browsershot) requires PHP 7.0 and above.
 
-[spatie/browsershot](https://github.com/) supports a lot of image screen shot functionality that adds a lot of extra PHP 7.0 dependencies.
+[spatie/browsershot](https://github.com/spatie/browsershot) supports a lot of image screen shot functionality that adds a lot of extra PHP 7.0 dependencies.
 
 So to meet our requirements of generating a PDF running on PHP 5.6 required that we strip out any PHP 7.0 specific functionality this meant removing screen shot image functionality.
 
