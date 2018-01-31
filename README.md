@@ -8,6 +8,12 @@ The package can convert a webpage to a pdf. The conversion is done behind the sc
 
 Originally base on [spatie/browsershot](https://github.com/spatie/browsershot).
 
+## Install
+
+```
+composer require "web-chefs/puppeteer-to-pdf"
+```
+
 ## Why Fork
 
 WebChefs current tries where possible to support PHP 5.6 and [spatie/browsershot](https://github.com/spatie/browsershot) requires PHP 7.0 and above.
